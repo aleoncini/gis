@@ -7,19 +7,27 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Sample web app</title>
+    <title>GIS Sample</title>
 
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
     <link href="css/gis.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.2.1/css/ol.css" type="text/css">
+    <style>
+      .map {
+        height: 400px;
+        width: 600px;
+      }
+    </style>
   </head>
 
   <body>
 
     <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
-      <a class="navbar-brand" href="#">OCP 4.3 Lab</a>
+      <a class="navbar-brand" href="#">GIS</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -30,7 +38,7 @@
             <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="protected/index.html">Protected</a>
+            <a class="nav-link" href="doc.html">Documentation</a>
           </li>
         </ul>
         <form class="form-inline my-2 my-lg-0">
@@ -44,8 +52,21 @@
 
       <div class="starter-template">
         <h1>OCP 4.3 OpenLayers Sample</h1>
-        <p class="lead">Use this document as a way to quickly add a web interface to a new project.<br> All you get is this text and a mostly barebones HTML document.</p>
-        <p class="lead">This app serves a directory named <a href="protected/index.html">protected</a> that you can use to check your security environment.</p>
+        <div id="map" class="map"></div>
+        <script type="text/javascript">
+          var map = new ol.Map({
+            target: 'map',
+            layers: [
+              new ol.layer.Tile({
+                source: new ol.source.OSM()
+              })
+            ],
+            view: new ol.View({
+              center: ol.proj.fromLonLat([37.41, 8.82]),
+              zoom: 4
+            })
+          });
+        </script>
       </div>
 
     </main><!-- /.container -->
@@ -55,5 +76,6 @@
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="js/jquery-3.3.1.min.js" ></script>
     <script src="js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.2.1/build/ol.js"></script>
   </body>
 </html>
