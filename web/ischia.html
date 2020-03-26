@@ -7,7 +7,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>GIS Sample</title>
+    <title>map of Ischia</title>
 
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -35,13 +35,13 @@
 
       <div class="collapse navbar-collapse" id="navbarsExampleDefault">
         <ul class="navbar-nav mr-auto">
-          <li class="nav-item active">
-            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+          <li class="nav-item">
+            <a class="nav-link" href="index.html">Home</a>
           </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Altre Aree</a>
+          <li class="nav-item active dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Ischia</a>
             <div class="dropdown-menu" aria-labelledby="dropdown01">
-              <a class="dropdown-item" href="ischia.html">Ischia</a>
+              <a class="dropdown-item" href="#">Ischia</a>
               <a class="dropdown-item" href="ldp.html">Lido dei Pini</a>
             </div>
           </li>
@@ -56,7 +56,7 @@
     <main role="main" class="container">
 
       <div class="starter-template">
-        <p>OCP 4.3 OpenLayers Sample</p>
+        <p style="font-weight: bold;color:#2F4F4F;text-align:left">Ischia (NA)</p>
         <div id="map" class="map"></div>
         <script type="text/javascript">
           var map = new ol.Map({
@@ -67,8 +67,8 @@
               })
             ],
             view: new ol.View({
-              center: ol.proj.fromLonLat([12.49, 41.89]),
-              zoom: 10
+              center: ol.proj.fromLonLat([13.90, 40.725]),
+              zoom: 13
             })
           });
         </script>
