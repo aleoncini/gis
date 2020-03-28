@@ -1,25 +1,12 @@
-FROM registry.fedoraproject.org/fedora-minimal
-
-RUN microdnf install nodejs && microdnf clean all
-
-RUN groupadd jboss && useradd jboss -g jboss
-
-USER jboss
-
-RUN cd /home/jboss \
-    && mkdir "${HOME}/.npm-packages" \
-    && npm config set prefix "${HOME}/.npm-packages" \
-    && echo 'NPM_PACKAGES="${HOME}/.npm-packages"' >> .bashrc \
-    && echo 'export PATH="$PATH:$NPM_PACKAGES/bin"' >> .bashrc \
-    && source ~/.bashrc
+FROM registry.access.redhat.com/ubi8/nodejs-10
 
 RUN npm install -g tileserver-gl-light
 
-WORKDIR /home/jboss
+COPY 2017-07-03_italy_rome.mbtiles /opt/app-root/src
 
-COPY run.sh /home/jboss
-COPY 2017-07-03_italy_rome.mbtiles /home/jboss/map.mbtiles
-RUN  chmod +x /home/jboss/run.sh
+RUN chgrp 0 /opt/app-root/src/2017-07-03_italy_rome.mbtiles && \
+    chmod g+rwX /opt/app-root/src/2017-07-03_italy_rome.mbtiles
 
 EXPOSE 8080
-ENTRYPOINT ["/bin/bash", "/home/jboss/run.sh"]
+USER 1001
+ENTRYPOINT ["tileserver-gl-light", "/opt/app-root/src/2017-07-03_italy_rome.mbtiles"]
